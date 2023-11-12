@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: [master]
+
+jobs:
+  actions-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install packages
+        run: npm ci
+      - name: Run Lint
+        run: npm run lint
+      - name: Run Tests
+        run: npm run test
+      - name: Build
+        run: npm run build
